@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+    /* General Reset */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    /* Body Styling */
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: radial-gradient(circle, #ffffff, #f0f0f5);
+        color: #333;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    /* Container Styling */
+    .login-container {
+        background: #f9f9f9;
+        border: 1px solid #e0e0e0;
+        padding: 25px 35px;
+        border-radius: 15px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 360px;
+        text-align: center;
+        animation: fadeIn 1s ease-in-out;
+    }
+
+    /* Header */
+    .login-container h2 {
+        font-size: 24px;
+        color: #4a4a4a;
+        margin-bottom: 20px;
+    }
+
+    /* Input Group */
+    .input-group {
+        margin-bottom: 20px;
+        text-align: left;
+    }
+
+    .input-group label {
+        display: block;
+        font-size: 14px;
+        color: #555;
+        margin-bottom: 5px;
+    }
+
+    .input-group input {
+        width: 100%;
+        padding: 12px;
+        font-size: 14px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        background: #fdfdfd;
+        outline: none;
+        transition: border-color 0.3s ease-in-out;
+    }
+
+    .input-group input:focus {
+        border-color: #6d5dfc;
+        box-shadow: 0 0 4px rgba(109, 93, 252, 0.5);
+    }
+
+    /* Button */
+    button {
+        background: linear-gradient(135deg, #6d5dfc, #58c2fc);
+        color: #fff;
+        padding: 12px;
+        border: none;
+        border-radius: 20px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        width: 100%;
+        margin-top: 10px;
+        transition: background 0.3s ease-in-out, transform 0.2s;
+    }
+
+    button:hover {
+        background: linear-gradient(135deg, #58c2fc, #6d5dfc);
+        transform: translateY(-2px);
+    }
+
+    button:active {
+        transform: translateY(0);
+    }
+
+    /* Signup Link */
+    .signup-link {
+        margin-top: 15px;
+        font-size: 14px;
+    }
+
+    .signup-link a {
+        color: #6d5dfc;
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s ease-in-out;
+    }
+
+    .signup-link a:hover {
+        color: #58c2fc;
+        text-decoration: underline;
+    }
+
+    /* Error Message */
+    .error {
+        color: #ff4d4d;
+        font-size: 12px;
+        margin-top: 5px;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+</style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form id="loginForm" action="/login" method="post" onsubmit="return validateForm()">
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username">
+                <p id="usernameError" class="error"></p>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password">
+                <p id="passwordError" class="error"></p>
+            </div>
+            <button type="submit">Login</button>
+            <p class="signup-link">Don't have an account? <a href="/register">Sign up</a></p>
+        </form>
+    </div>
+
+    <script>
+        function validateForm() {
+            // Reset previous error messages
+            document.getElementById('usernameError').innerText = '';
+            document.getElementById('passwordError').innerText = '';
+
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+            var valid = true;
+
+            // Check if username is empty
+            if (username.trim() === '') {
+                document.getElementById('usernameError').innerText = 'Please enter your username';
+                valid = false;
+            }
+
+            // Check if password is empty
+            if (password.trim() === '') {
+                document.getElementById('passwordError').innerText = 'Please enter your password';
+                valid = false;
+            }
+
+            return valid;
+        }
+    </script>
+</body>
+</html>
